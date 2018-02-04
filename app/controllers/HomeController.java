@@ -1,5 +1,6 @@
 package controllers;
 
+import play.Logger;
 import play.mvc.*;
 
 import views.html.*;
@@ -9,6 +10,7 @@ import views.html.*;
  * to the application's home page.
  */
 public class HomeController extends Controller {
+    private static final Logger.ALogger logger = Logger.of(HomeController.class);
 
     /**
      * An action that renders an HTML page with a welcome message.
@@ -18,6 +20,21 @@ public class HomeController extends Controller {
      */
     public Result index() {
         return ok(index.render("Your new application is ready."));
+    }
+
+    public Result postTest() {
+
+        logger.debug("postTest start");
+
+        try {
+            Thread.sleep(150000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        logger.debug("postTest end");
+
+        return ok();
     }
 
 }
